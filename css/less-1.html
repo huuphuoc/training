@@ -4,44 +4,331 @@
     <meta charset="UTF-8">
     <title>LESS #1</title>
     <link rel="stylesheet" href="../vendor/reveal/css/reveal.css">
-    <link rel="stylesheet" href="../vendor/reveal/css/theme/serif.css">
+    <link rel="stylesheet" href="../vendor/reveal/css/theme/night.css">
+    <link rel="stylesheet" href="../vendor/reveal/lib/css/zenburn.css">
+    <link rel="stylesheet" href="../vendor/fontawesome/css/font-awesome.min.css">
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="../vendor/fontawesome/css/font-awesome-ie7.min.css">
+    <![endif]-->
+    <style type="text/css">
+    .doc-text-left { text-align: left; }
+    .reveal i { font-style: normal; }
+    [class^="icon-"],
+    [class*=" icon-"] {
+        font-family: FontAwesome !important;
+    }
+    </style>
 </head>
 <body>
     <div class="reveal">
         <div class="slides">
+            <!-- cover -->
             <section>
                 <h1>LESS #1</h1>
-                <p>Introduction to LESS</p>
-                <hr>
+                <h3>Introduction to LESS</h3>
                 <p>
                     <small>&copy; 2013 Nguyen Huu Phuoc</small>
                 </p>
             </section>
+            <!-- /cover -->
+
+            <!-- toc -->
+            <section>
+                <h2>Table of Content</h2>
+                <p><em>What do we learn today?</em></p>
+                <ul>
+                    <li class="fragment">Plain CSS problems</li>
+                </ul>
+            </section>
+            <!-- /toc -->
+
+            <!-- problems -->
+            <section>
+                <section>
+                    <h2>Plain CSS Problems</h2>
+                    <ul>
+                        <li class="fragment">Customize</li>
+                        <li class="fragment">Reuse</li>
+                        <li class="fragment">Maintain</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Problem #1: Customize</h2>
+                    <p>Popular task</p>
+                    <p class="fragment highlight-red">Theming</p>
+                    <ul class="fragment">
+                        <li><em>jQuery UI v1.10.2</em> &mdash; 24 themes</li>
+                        <li><em>Dojo Toolkit v1.8.3</em> &mdash; 4 themes</li>
+                        <li><em>YUI v1.8.3</em> &mdash; 1 theme</li>
+                        <li><em>Kendo UI v1.8.3</em> &mdash; 10 themes</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>jQuery UI darkness theme</h2>
+                    <p>406 lines of code</p>
+                        <pre><code>.ui-widget {
+    font-family: Segoe UI,Arial,sans-serif;
+    font-size: 1.1em;
+}
+.ui-widget .ui-widget {
+    font-size: 1em;
+}
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+    font-family: Segoe UI,Arial,sans-serif;
+    font-size: 1em;
+}
+...</code></pre>
+                </section>
+
+                <section>
+                    <h2><i class="icon-thumbs-down"></i> Cons</h2>
+                    <ul>
+                        <li class="fragment">I do <strong>NOT</strong> know exactly where to update the theme if file is too long</li>
+                        <li class="fragment">I am <strong>NOT</strong> sure if what I have done is right</li>
+                    </ul>
+                    <p class="fragment">Replacing <code>Segoe UI,Arial,sans-serif</code> with my font <strong>might do not</strong> work as expected!</p>
+                </section>
+
+                <section>
+                    <h2>Problem #2: Reuse</h2>
+                    <p>jQuery UI darkness theme</p>
+                    <pre><code>.ui-state-disabled .ui-icon {
+    filter:Alpha(Opacity=35); /* For IE8 - See #6059 */
+}</code></pre>
+                    <p class="fragment">jQuery UI lightness theme</p>
+                    <pre class="fragment"><code>.ui-state-disabled .ui-icon {
+    filter:Alpha(Opacity=35); /* For IE8 - See #6059 */
+}</code></pre>
+                </section>
+
+                <section>
+                    <h2><i class="icon-thumbs-down"></i> Cons</h2>
+                    <p>Violate DRY method</p>
+                    <p class="fragment highlight-red">(Don't Repeat Yourself)</p>
+                    <p>Remember: Avoid to duplicate code</p>
+                </section>
+
+                <section>
+                    <h2>Problem #3: Maintain</h2>
+                    <p>Twitter Bootstrap CSS:</p>
+                    <p><code>table</code> styles from line 1997 &rarr; 2272</p>
+                    <pre><code>table {
+    max-width: 100%;
+    background-color: transparent;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+...
+.table tbody tr.info > td {
+    background-color: #d9edf7;
+}</code></pre>
+                    <p class="fragment"><i class="icon-thumbs-down"></i> Too long, cannot be collapsed in IDE</p>
+                </section>
+
+                <section>
+                    <p>Twitter Bootstrap CSS:</p>
+<pre><code>.navbar .nav li.dropdown.open > .dropdown-toggle .caret,
+.navbar .nav li.dropdown.active > .dropdown-toggle .caret,
+.navbar .nav li.dropdown.open.active > .dropdown-toggle .caret {
+    border-top-color: #555555;
+    border-bottom-color: #555555;
+}
+</code></pre>
+                    <p class="fragment"><i class="icon-thumbs-down"></i> Too long selectors</p>
+                </section>
+            </section>
+            <!-- /problems -->
+
+            <!-- preprocessor -->
+            <section>
+                <h2>CSS Preprocessor</h2>
+                <p class="doc-text-left"><em>Definition:</em></p>
+                <p><span class="fragment highlight-red">WRITE</span> CSS in a extended language,</p>
+                <p>&rarr; and then <span class="fragment highlight-red">COMPILE</span> code to plain CSS</p>
+
+                <p class="doc-text-left"><em>Popular CSS preprocessor</em></p>
+                <ol>
+                    <li>LESS</li>
+                    <li>SASS</li>
+                </ol>
+            </section>
+            <!-- /preprocessor -->
 
             <section>
-                <h2>Table of content</h2>
-                <p>What do we learn today?</p>
+                <h2>LESS</h2>
                 <ol>
-                    <li class="fragment">LESS definition</li>
-                    <li class="fragment">LESS advantages</li>
-                    <li class="fragment">Tools</li>
+                    <li>LESS file: <code>.less</code></li>
+                    <li>Compiler: Client, Server (mentioned later)</li>
                 </ol>
+                <p>We will play at <a href="http://less2css.org/">Less2Css</a></p>
             </section>
 
             <section>
-                <h2>The problem with plain CSS</h2>
-                <ul>
-                    <li>Customization?</li>
-                    <li>Reuse?</li>
-                </ul>
+                <section>
+                    <h2>How LESS solves our issues</h2>
+                </section>
+
+                <section>
+                    <h3>Solution #1: Customize</h3>
+                    <p>Use variables to define which attributes could be changed:</p>
+                    <p>Dojo Toolkit:</p>
+<pre class="fragment"><code>// LESS
+@text-color: #000;
+.claro .dijitMenuItem {
+    color: @text-color;
+}</code></pre>
+                    <i class="fragment icon-arrow-down"></i>
+<pre class="fragment"><code>// CSS
+.claro .dijitMenuItem {
+    color: #000;
+}
+</code></pre>
+                </section>
+
+                <section>
+                    <h3>Solution #1: Customize</h3>
+                    <p>Kendo UI:</p>
+<pre class="fragment"><code>// LESS
+@image-folder: "Bootstrap";
+.k-tool-icon,
+.k-tool-icon.k-state-hover,
+.k-tool-icon.k-state-active,
+.k-tool-icon.k-state-active.k-state-hover {
+    background-image: url('@{image-folder}/sprite.png');
+}</code></pre>
+                    <i class="fragment icon-arrow-down"></i>
+<pre class="fragment"><code>// CSS
+.k-tool-icon,
+.k-tool-icon.k-state-hover,
+.k-tool-icon.k-state-active,
+.k-tool-icon.k-state-active.k-state-hover {
+    background-image: url('Bootstrap/sprite.png');
+}</code></pre>
+                </section>
+
+                <section>
+                    <h3>Solution #2: Reuse</h3>
+                    <p>In some cases, we need to reuse more than one single variables.</p>
+                    <p>Dojo Toolkit:</p>
+<pre class="fragment"><code>// LESS
+.border-radius (@radius) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+.claro .dijitCalendar {
+    .border-radius(4px);
+}</code></pre>
+                    <i class="fragment icon-arrow-down"></i>
+<pre class="fragment"><code>// CSS
+.claro .dijitCalendar {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}</code></pre>
+                </section>
+
+                <section>
+                    <h3>Solution #2: Reuse</h3>
+                    <p>Kendo UI:</p>
+<pre class="fragment"><code>// LESS
+@widget-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+.box-shadow(@arguments) {
+    -webkit-box-shadow: @arguments;
+    box-shadow: @arguments;
+}
+.k-widget, .k-button {
+    .box-shadow(@widget-shadow);
+}</code></pre>
+                    <i class="fragment icon-arrow-down"></i>
+<pre class="fragment"><code>// CSS
+.k-widget, .k-button {
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}</code></pre>
+                </section>
+
+                <section>
+                    <h3>Solution #3: Maintain</h3>
+                    <p>Nesting structure</p>
+                    <p>Twitter Bootstrap:</p>
+<pre class="fragment"><code>// LESS
+.table {
+    width: 100%;
+    th {
+        font-weight: bold;
+    }
+}
+</code></pre>
+                    <i class="fragment icon-arrow-down"></i>
+<pre class="fragment"><code>// CSS
+.table {
+    width: 100%;
+}
+.table th {
+    font-weight: bold;
+}</code></pre>
+                </section>
+
+                <section>
+                    <h3>Solution #3: Maintain</h3>
+                    <p>Twitter Bootstrap:</p>
+<pre class="fragment"><code>// LESS
+.btn {
+    display: inline-block;
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+}</code></pre>
+                    <i class="fragment icon-arrow-down"></i>
+                    <pre class="fragment"><code>// CSS
+.btn {
+    display: inline-block;
+}
+.btn:hover,
+.btn:focus {
+    text-decoration: none;
+}</code></pre>
+                </section>
+            </section>
+
+            <section>
+                <h2>Coming up next</h2>
+                <p>LESSON #2: Use various tools to play with LESS:</p>
+                <ol>
+                    <li class="fragment">Online tools</li>
+                    <li class="fragment">Compile LESS with Javascript</li>
+                    <li class="fragment">Separated software</li>
+                    <li class="fragment">IDE</li>
+                </ol>
             </section>
         </div>
     </div>
 
+<script src="../vendor/reveal/lib/js/head.min.js"></script>
 <script src="../vendor/reveal/js/reveal.min.js"></script>
 <script type="text/javascript">
 Reveal.initialize({
-    theme: "serif"
+    controls: false,
+    progress: true,
+    history: true,
+    center: true,
+    transition: 'default',
+    dependencies: [
+        {
+            src: '../vendor/reveal/plugin/highlight/highlight.js',
+            async: true,
+            callback: function() {
+                hljs.initHighlightingOnLoad();
+            }
+        },
+    ]
 });
 </script>
 </body>

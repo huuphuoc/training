@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>LESS #2</title>
+    <link rel="stylesheet" href="../vendor/reveal/css/reveal.css">
+    <link rel="stylesheet" href="../vendor/reveal/css/theme/serif.css">
+    <link rel="stylesheet" href="../vendor/reveal/lib/css/zenburn.css">
+    <link rel="stylesheet" href="../vendor/fontawesome/css/font-awesome.min.css">
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="../vendor/fontawesome/css/font-awesome-ie7.min.css">
+    <![endif]-->
+    <style type="text/css">
+    [class^="icon-"],
+    [class*=" icon-"] {
+        font-family: FontAwesome !important;
+    }
+    .reveal i { font-style: normal; }
+    .reveal thead th { border-bottom: 1px solid #CCC; }
+    .reveal table { width: 100%; }
+    .reveal table th { text-align: center; }
+    .reveal table td { vertical-align: top; width: 50%; }
+    .doc-no { text-decoration: line-through; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- cover -->
+            <section>
+                <h1>LESS #2</h1>
+                <hr/>
+                <h3>LESS tools</h3>
+                <p>
+                    <small>&copy; 2013 Nguyen Huu Phuoc</small>
+                </p>
+            </section>
+            <!-- /cover -->
+
+            <section>
+                <h2>Compiling LESS to CSS</h2>
+                <p>We can compile *.less to *.css with:</p>
+                <ol>
+                    <li class="fragment">Online tools</li>
+                    <li class="fragment">Javascript</li>
+                    <li class="fragment">Programming languages</li>
+                    <li class="fragment">Separated software</li>
+                    <li class="fragment">IDE</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Online tools</h2>
+                <p><a href="http://less2css.org/" target="_blank">less2css</a></p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th><i class="icon-thumbs-up"></i></th>
+                            <th><i class="icon-thumbs-down"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li class="fragment">Free, open source</li>
+                                    <li class="fragment">Live preview</li>
+                                    <li class="fragment">Show errors</li>
+                                    <li class="fragment">Easy to use</li>
+                                    <li class="fragment">Allow to choose LESS versions</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li class="fragment">Cannot download CSS file</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h2>Online tools</h2>
+                <p><a href="http://lesstester.com/" target="_blank">lesstester</a></p>
+                <table>
+                    <thead>
+                    <tr>
+                        <th><i class="icon-thumbs-up"></i></th>
+                        <th><i class="icon-thumbs-down"></i></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li class="fragment">Free, <span class="doc-no">open source</span></li>
+                                    <li class="fragment">LESS cheat sheet</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li class="fragment">No live preview</li>
+                                    <li class="fragment">Unable to choose LESS versions</li>
+                                    <li class="fragment">Cannot download CSS file</li>
+                                    <li class="fragment">Advertising banner</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h2>Javascript</h2>
+                <p><a href="http://lesscss.org/" target="_blank">less.js</a></p>
+                <pre class="fragment"><code>&lt;link rel="stylesheet/less" type="text/css" href="styles.less" /&gt;
+&lt;script type="text/javascript"&gt;
+// Options (not required)
+less = {
+    env: 'development',
+    async: false,
+    fileAsync: false,
+    poll: 1000,
+    functions: {},
+    dumpLineNumbers: 'comments',
+    relativeUrls: false,
+    rootpath: ':/a.com/'
+};
+&lt;/script&gt;
+&lt;script src="less.js" type="text/javascript"&gt;&lt;/script&gt;</code></pre>
+                </section>
+            </section>
+
+            <section>
+                <h2>less.js</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th><i class="icon-thumbs-up"></i></th>
+                        <th><i class="icon-thumbs-down"></i></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li class="fragment">Run on every browsers</li>
+                                <li class="fragment">Do not need any additional software</li>
+                                <li class="fragment">Written by LESS author</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li class="fragment">Compile every time</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h2>Programming languages</h2>
+                <p><a href="http://leafo.net/lessphp/" target="_blank">lessphp</a></p>
+                <pre class="fragment"><code>&lt;?php
+require "lessc.inc.php";
+
+$less = new lessc;
+echo $less->compile(".block { padding: 3 + 4px }");
+echo $less->compileFile("input.less");
+</code></pre>
+            </section>
+
+            <section>
+                <h2>lessphp</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th><i class="icon-thumbs-up"></i></th>
+                            <th><i class="icon-thumbs-down"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li class="fragment">Free, open source</li>
+                                    <li class="fragment">Various plugins for other (WP, Symfony, Drupal, CakePHP, Magento)</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li class="fragment">?</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h2>Software</h2>
+                <p>* &mdash;Can run on both Win and Mac</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mac</th>
+                            <th>Win</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li class="fragment"><a target="_blank" href="http://incident57.com/less/">less.app</a></li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li class="fragment"><a target="_blank" href="http://wearekiss.com/simpless">SimpLESS</a> *</li>
+                                    <li class="fragment"><a target="_blank" href="http://crunchapp.net/">Crunch</a> *</li>
+                                    <li class="fragment"><a target="_blank" href="http://koala-app.com/">Koala</a> *</li>
+                                    <li class="fragment"><a target="_blank" href="http://winless.org/">WinLESS</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h2>Software</h2>
+                <p>Features for comparison?</p>
+                <ul>
+                    <li class="fragment">Free?</li>
+                    <li class="fragment">Cross-platform?</li>
+                    <li class="fragment">Drag/drop support?</li>
+                    <li class="fragment">Multi-language support? (Less, Sass, Compass)</li>
+                    <li class="fragment">Real-time compilation?</li>
+                    <li class="fragment">Compress compiled files?</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>IDE</h2>
+                <p>PHPStorm 6.0</p>
+                <ol>
+                    <li class="fragment">Install the command line</li>
+                    <li class="fragment">Setting file watchers</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>PHPStorm</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th><i class="icon-thumbs-up"></i></th>
+                            <th><i class="icon-thumbs-down"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li class="fragment">Integrated in one IDE</li>
+                                    <li class="fragment">Auto compilation</li>
+                                    <li class="fragment">Collapse code</li>
+                                    <li class="fragment">Color picker</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li class="fragment">Have to install the command line tools</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h2>CSS &rarr; LESS?</h2>
+                <p><a href="http://leafo.net/lessphp/lessify/" target="_blank">lessify</a></p>
+            </section>
+        </div>
+    </div>
+
+<script src="../vendor/reveal/lib/js/head.min.js"></script>
+<script src="../vendor/reveal/js/reveal.min.js"></script>
+<script type="text/javascript">
+Reveal.initialize({
+    controls: false,
+    progress: true,
+    history: true,
+    center: true,
+    transition: 'default',
+    dependencies: [
+        {
+            src: '../vendor/reveal/plugin/highlight/highlight.js',
+            async: true,
+            callback: function() {
+                hljs.initHighlightingOnLoad();
+            }
+        }
+    ]
+});
+</script>
+</body>
+</html>

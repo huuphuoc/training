@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>LESS #2</title>
     <link rel="stylesheet" href="../vendor/reveal/css/reveal.css">
-    <link rel="stylesheet" href="../vendor/reveal/css/theme/serif.css">
+    <link rel="stylesheet" href="../vendor/reveal/css/theme/simple.css">
     <link rel="stylesheet" href="../vendor/reveal/lib/css/zenburn.css">
     <link rel="stylesheet" href="../vendor/fontawesome/css/font-awesome.min.css">
     <!--[if IE 7]>
@@ -244,7 +244,7 @@ echo $less->compileFile("input.less");
 
             <section>
                 <h2>IDE</h2>
-                <p>PHPStorm 6.0</p>
+                <p>PhpStorm 6.0</p>
                 <ol>
                     <li class="fragment">Install the command line</li>
                     <li class="fragment">Setting file watchers</li>
@@ -252,7 +252,7 @@ echo $less->compileFile("input.less");
             </section>
 
             <section>
-                <h2>PHPStorm</h2>
+                <h2>PhpStorm</h2>
                 <table>
                     <thead>
                         <tr>
@@ -284,6 +284,22 @@ echo $less->compileFile("input.less");
                 <h2>CSS &rarr; LESS?</h2>
                 <p><a href="http://leafo.net/lessphp/lessify/" target="_blank">lessify</a></p>
             </section>
+
+            <section>
+                <h2>Homework</h2>
+                <ol>
+                    <li class="fragment">Try less.js, with/without options</li>
+                    <li class="fragment">Try lessphp</li>
+                    <li class="fragment">Compare features of less.app, SimpLESS, Crunch, Koala, and WinLESS</li>
+                    <li class="fragment">Install LESS compiler command line</li>
+                    <li class="fragment">Write and compile LESS with PhpStorm</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Coming up next</h2>
+                <p>LESS #3: Getting started with LESS language</p>
+            </section>
         </div>
     </div>
 
@@ -295,7 +311,7 @@ Reveal.initialize({
     progress: true,
     history: true,
     center: true,
-    transition: 'default',
+    transition: 'concave', // cube/page/concave/zoom/linear/fade/none/default
     dependencies: [
         {
             src: '../vendor/reveal/plugin/highlight/highlight.js',
